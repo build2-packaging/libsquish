@@ -11,7 +11,7 @@ To start using `libsquish` in your project, add the following `depends`
 value to your `manifest`, adjusting the version constraint as appropriate:
 
 ```
-depends: libsquish ^1.15.104
+depends: libsquish ^1.15.1
 ```
 
 Then import the library in your `buildfile`:
@@ -41,4 +41,11 @@ shared variants), in the `squish` namespace.
 
 ## Configuration variables
 
-This package has no configuration variables.
+This package has no configuration variables. SIMD acceleration
+(`SQUISH_USE_SSE`/`SQUISH_USE_ALTIVEC` in upstream's own build) is enabled
+automatically whenever the compiler already targets SSE2 or Altivec, for
+example on x86-64 by default, or when the consumer's own
+`-march=`/`-msse2`/`-maltivec` compile options are already active.
+libsquish never adds its own instruction-set compile flags, so it cannot
+widen a consumer's binary beyond what they already targeted. Upstream's
+`SQUISH_USE_OPENMP` option is not enabled by this package.

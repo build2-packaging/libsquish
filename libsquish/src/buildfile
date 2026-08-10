@@ -26,6 +26,13 @@ libul{squish}: {hxx cxx}{**} $impl_libs $intf_libs
 libul{squish}: inl{singlecolourlookup}@./
 inl{singlecolourlookup}@./: install = false
 
+# squish-simd.h.in is only consumed via the ad hoc predefs path below,
+# so attach it explicitly for dist.
+#
+libul{squish}: file{squish-simd.h.in}@./
+file{squish-simd.h.in}@./: install = false
+
+
 libs{squish}: def{squish}: include = ($cxx.target.system == 'win32-msvc')
 def{squish}: libul{squish}
 
@@ -41,6 +48,46 @@ cxx.poptions =+ "-I$out_pfx_src" "-I$src_pfx_src" \
 
 if ($cxx.target.system == 'mingw32')
   cxx.loptions += -Wl,--export-all-symbols
+
+# SIMD acceleration: mirror whatever the compiler already targets rather
+# than adding our own instruction-set flags (which would risk widening a
+# consumer's binary beyond what they targeted). squish-simd.h.in is a
+# private detection artifact, never installed or included by real source.
+#
+# HAVE_SSE2 needs the autoconf module's builtin check to reconcile MSVC
+# (_M_X64/_M_IX86_FP) vs. GCC/Clang (__SSE2__). Altivec has no such
+# cross-compiler split (PowerPC/GCC/Clang only), so __ALTIVEC__ is read
+# directly as a plain compiler-predefined macro from the same compile,
+# with no autoconf check needed.
+#
+[rule_hint=autoconf.in] h{squish-simd}: in{squish-simd}
+h{squish-simd}: install = false
+
+cxx.predefs.poptions = false
+
+[rule_hint=cxx.predefs] buildfile{squish-simd}: h{squish-simd}
+{
+  cxx.predefs.macros = HAVE_SSE2@have_sse2 __ALTIVEC__@have_altivec
+}
+
+if ($build.meta_operation == 'perform')
+{
+  update buildfile{squish-simd}
+  source $path(buildfile{squish-simd})
+
+  have_sse2    = ($have_sse2    == 1 ? true : false)
+  have_altivec = ($have_altivec == 1 ? true : false)
+}
+else
+{
+  have_sse2    = false
+  have_altivec = false
+}
+
+if $have_sse2
+  cxx.poptions += -DSQUISH_USE_SSE=2
+elif $have_altivec
+  cxx.poptions += -DSQUISH_USE_ALTIVEC=1
 
 # Export options.
 #
