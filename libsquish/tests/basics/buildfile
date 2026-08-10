@@ -1,0 +1,3 @@
+import libs = libsquish%lib{squish}
+
+exe{driver}: {hxx cxx}{**} $libs testscript{**}
