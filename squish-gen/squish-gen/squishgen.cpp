@@ -1,0 +1,1 @@
+../../upstream/gen/src/squishgen.cpp

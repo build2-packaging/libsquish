@@ -1,9 +1,9 @@
 : basics
 :
-$* 'World' >'Hello, World!'
-
-: missing-name
-:
-$* 2>>EOE != 0
-error: missing name
-EOE
+# squish-gen takes no arguments and unconditionally regenerates the four
+# single-colour lookup tables baked into libsquish's
+# singlecolourlookup.inl, printing them as C++ source to stdout. It's an
+# internal maintainer tool (the .inl output is already checked into
+# libsquish), so just confirm it builds, links, and runs successfully.
+#
+$* >!

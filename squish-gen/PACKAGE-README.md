@@ -1,9 +1,11 @@
-# squish-gen - <img align="left" src="https://i
+# squish-gen - libsquish lookup-table generator tool
 
-This is a `build2` package for the [`<UPSTREAM-NAME>`](https://<UPSTREAM-URL>)
-executable. It is a <SUMMARY-OF-FUNCTIONALITY>.
-
-Note that the `squish-gen` executable in this package provides `build2` metadata.
+This is a `build2` package for the `squish-gen` tool from
+[`libsquish`](https://github.com/oblivioncth/libsquish). It regenerates the
+single-colour lookup tables that libsquish bakes into its
+`singlecolourlookup.inl` source file. This is an internal maintainer tool:
+the generated tables are already checked into `libsquish`, so ordinary
+consumers of `libsquish` never need to build or run this package.
 
 
 ## Usage
@@ -13,13 +15,13 @@ To start using `squish-gen` in your project, add the following build-time
 appropriate:
 
 ```
-depends: * squish-gen ^<VERSION>
+depends: * squish-gen ^1.15.104
 ```
 
 Then import the executable in your `buildfile`:
 
 ```
-import! [metadata] <TARGET> = squish-gen%exe{<TARGET>}
+import squish_gen = squish-gen%exe{squish-gen}
 ```
 
 
@@ -28,18 +30,13 @@ import! [metadata] <TARGET> = squish-gen%exe{<TARGET>}
 This package provides the following importable targets:
 
 ```
-exe{<TARGET>}
+exe{squish-gen}
 ```
 
-<DESCRIPTION-OF-IMPORTABLE-TARGETS>
+Takes no arguments; prints the four regenerated lookup tables as C++
+source to stdout.
 
 
 ## Configuration variables
 
-This package provides the following configuration variables:
-
-```
-[bool] config.squish_gen.<VARIABLE> ?= false
-```
-
-<DESCRIPTION-OF-CONFIG-VARIABLES>
+This package has no configuration variables.

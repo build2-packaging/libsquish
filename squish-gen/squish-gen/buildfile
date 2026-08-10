@@ -1,6 +1,3 @@
-libs =
-#import libs += libhello%lib{hello}
-
-exe{squish-gen}: {hxx cxx}{**} $libs testscript
+exe{squish-gen}: {hxx cxx}{**} testscript
 
 cxx.poptions =+ "-I$out_root" "-I$src_root"

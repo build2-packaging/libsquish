@@ -1,15 +1,18 @@
 : 1
 name: squish-gen
-version: 0.1.0-a.0.z
+version: 1.15.104-a.0.z
+upstream-version: 1.15.1.4
 language: c++
 project: libsquish
-summary: <img align="left" src="https://i
-license: other: proprietary ; Not free/open source.
+summary: libsquish lookup-table generator tool
+license: MIT
+topics: graphics, texture compression, codegen
 description-file: README.md
 package-description-file: PACKAGE-README.md
-changes-file: CHANGELOG
-url: https://example.org/upstream
-email: upstream@example.org
+changes-file: ChangeLog
+url: https://github.com/oblivioncth/libsquish
+doc-url: https://oblivioncth.github.io/libsquish/
+src-url: https://github.com/oblivioncth/libsquish
 package-url: https://github.com/build2-packaging/libsquish
 package-email: packaging@build2.org ; Mailing list.
 depends: * build2 >= 0.18.0

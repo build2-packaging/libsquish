@@ -1,0 +1,6 @@
+$out_root/
+{
+  include squish-gen/
+}
+
+export $out_root/squish-gen/$import.target

@@ -1,0 +1,4 @@
+import squish_gen = squish-gen%exe{squish-gen}
+
+testscript{*}: test = $squish_gen
+./: testscript $squish_gen
