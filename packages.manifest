@@ -1,2 +1,5 @@
 : 1
 location: libsquish/
+
+:
+location: squish-gen/

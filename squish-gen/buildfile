@@ -1,0 +1,1 @@
+./: {*/ -build/} doc{README.md PACKAGE-README.md CHANGELOG} legal{LICENSE} manifest

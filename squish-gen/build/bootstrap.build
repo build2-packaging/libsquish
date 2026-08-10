@@ -1,0 +1,7 @@
+project = squish-gen
+
+using version
+using config
+using test
+using install
+using dist
