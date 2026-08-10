@@ -3,3 +3,6 @@ location: libsquish/
 
 :
 location: squish-gen/
+
+:
+location: squish-png/
