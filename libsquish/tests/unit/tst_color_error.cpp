@@ -1,0 +1,1 @@
+../../../upstream/tests/color_error/tst_color_error.cpp

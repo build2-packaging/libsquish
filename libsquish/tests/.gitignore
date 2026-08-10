@@ -1,6 +1,7 @@
 # Test executables.
 #
 driver
+tst_color_error
 
 # Testscript output directories (can be symlinks).
 #

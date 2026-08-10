@@ -1,0 +1,1 @@
+../../../upstream/tests/_common/include/libsquish_test_common.h

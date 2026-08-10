@@ -1,0 +1,7 @@
+import libs = libsquish%lib{squish}
+
+for t : cxx{*}
+{
+  n = $name($t)
+  ./: exe{$n}: $t hxx{*} $libs testscript
+}
