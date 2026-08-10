@@ -11,7 +11,7 @@ To start using `libsquish` in your project, add the following `depends`
 value to your `manifest`, adjusting the version constraint as appropriate:
 
 ```
-depends: libsquish ^1.15.1
+depends: libsquish ^1.15.104
 ```
 
 Then import the library in your `buildfile`:
