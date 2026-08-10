@@ -1,9 +1,11 @@
-# squish-png - <img align="left" src="https://i
+# squish-png - libsquish PNG round-trip compression tester
 
-This is a `build2` package for the [`<UPSTREAM-NAME>`](https://<UPSTREAM-URL>)
-executable. It is a <SUMMARY-OF-FUNCTIONALITY>.
-
-Note that the `squish-png` executable in this package provides `build2` metadata.
+This is a `build2` package for the `squish-png` tool from
+[`libsquish`](https://github.com/oblivioncth/libsquish). It loads a PNG
+image, compresses it with DXT1/DXT3/DXT5, decompresses it back, reports the
+RMS error, and optionally writes the round-tripped image back out as PNG.
+It exists to exercise `libsquish`'s whole-image compression API against
+real images; ordinary consumers of `libsquish` don't need this tool.
 
 
 ## Usage
@@ -13,13 +15,13 @@ To start using `squish-png` in your project, add the following build-time
 appropriate:
 
 ```
-depends: * squish-png ^<VERSION>
+depends: * squish-png ^1.15.104
 ```
 
 Then import the executable in your `buildfile`:
 
 ```
-import! [metadata] <TARGET> = squish-png%exe{<TARGET>}
+import squish_png = squish-png%exe{squish-png}
 ```
 
 
@@ -28,18 +30,13 @@ import! [metadata] <TARGET> = squish-png%exe{<TARGET>}
 This package provides the following importable targets:
 
 ```
-exe{<TARGET>}
+exe{squish-png}
 ```
 
-<DESCRIPTION-OF-IMPORTABLE-TARGETS>
+`squish-png [-135riw] <source> [<target>]` -- see `squish-png -h` for the
+full option list.
 
 
 ## Configuration variables
 
-This package provides the following configuration variables:
-
-```
-[bool] config.squish_png.<VARIABLE> ?= false
-```
-
-<DESCRIPTION-OF-CONFIG-VARIABLES>
+This package has no configuration variables.

@@ -1,0 +1,3 @@
+: basics
+:
+$* -h dummy.png >! 2>! == 0

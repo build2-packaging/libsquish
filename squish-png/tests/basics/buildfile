@@ -1,0 +1,4 @@
+import squish_png = squish-png%exe{squish-png}
+
+testscript{*}: test = $squish_png
+./: testscript $squish_png

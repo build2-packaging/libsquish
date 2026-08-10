@@ -1,5 +1,5 @@
-libs =
-#import libs += libhello%lib{hello}
+import libs = libsquish%lib{squish}
+import libs += libpng%lib{png}
 
 exe{squish-png}: {hxx cxx}{**} $libs testscript
 

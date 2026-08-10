@@ -1,0 +1,6 @@
+$out_root/
+{
+  include squish-png/
+}
+
+export $out_root/squish-png/$import.target

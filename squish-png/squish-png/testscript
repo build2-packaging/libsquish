@@ -1,9 +1,9 @@
-: basics
+: help
 :
-$* 'World' >'Hello, World!'
-
-: missing-name
-:
-$* 2>>EOE != 0
-error: missing name
-EOE
+# squish-png requires a source PNG positional argument even with -h (it
+# only short-circuits to the help/syntax text once argument parsing sees
+# a non-empty source name), so pass a dummy filename that's never actually
+# opened -- -h prints the syntax text and returns before any file I/O.
+# Confirms the executable builds, links against libpng, and runs.
+#
+$* -h dummy.png >!
