@@ -1,6 +1,5 @@
-intf_libs = # Interface dependencies.
-impl_libs = # Implementation dependencies.
-#import xxxx_libs += libhello%lib{hello}
+intf_libs = # Interface dependencies. libsquish has none.
+impl_libs = # Implementation dependencies. libsquish has none.
 
 # Public headers.
 #
@@ -10,11 +9,22 @@ include $pub
 
 pub_hdrs = $($pub/ pub_hdrs)
 
+define inl: file
+inl{*}: extension = inl
+
 lib{squish}: libul{squish}: $pub/{$pub_hdrs}
 
 # Private headers and sources as well as dependencies.
 #
 libul{squish}: {hxx cxx}{**} $impl_libs $intf_libs
+
+# singlecolourlookup.inl is textually #include'd by singlecolourfit.cpp
+# rather than compiled on its own, so it matches no cxx{}/hxx{} pattern
+# above. Declare it explicitly as a plain file so b dist and b install
+# still see it as part of the source tree.
+#
+libul{squish}: inl{singlecolourlookup}@./
+inl{singlecolourlookup}@./: install = false
 
 libs{squish}: def{squish}: include = ($cxx.target.system == 'win32-msvc')
 def{squish}: libul{squish}
