@@ -1,0 +1,11 @@
+--- squishgen.cpp.orig	2026-08-07 20:12:02
++++ squishgen.cpp	2026-08-15 15:43:34
+@@ -43,7 +43,7 @@
+ 
+     // initialise the data
+     for( int target = 0; target < 256; ++target )
+-        for( int index = 0; index < colours; ++index )
++        for( int index = 0; index < 2; ++index )
+             values[target].sources[index].error = 255;
+ 
+     // loop over all possible source points
