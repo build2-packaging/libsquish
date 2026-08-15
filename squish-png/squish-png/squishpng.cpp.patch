@@ -1,0 +1,11 @@
+--- squishpng.cpp.orig	2026-08-07 20:12:02
++++ squishpng.cpp	2026-08-15 15:56:48
+@@ -83,7 +83,7 @@
+     void Reset( int size )
+     {
+         u8 *p = new u8[size];
+-        delete m_p;
++        delete[] m_p;
+         m_p = p;
+     }
+ 
