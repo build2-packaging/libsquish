@@ -1,0 +1,8 @@
+: 1
+name: libsquish
+version: 1.15.104
+upstream-version: 1.15.1.4
+language: c++
+project: libsquish
+summary: DXT/S3TC texture compression C++ library
+license: MIT

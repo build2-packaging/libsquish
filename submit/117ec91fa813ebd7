@@ -1,0 +1,8 @@
+: 1
+name: squish-gen
+version: 1.15.104
+upstream-version: 1.15.1.4
+language: c++
+project: libsquish
+summary: libsquish lookup-table generator tool
+license: MIT
