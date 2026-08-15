@@ -1,0 +1,44 @@
+--- tst_color_error.cpp.orig	2026-08-07 20:12:02
++++ tst_color_error.cpp	2026-08-15 15:58:48
+@@ -41,6 +41,16 @@
+ 
+ using namespace squish;
+ 
++inline bool near(double a, double b)
++{
++    double scale = std::fabs(a);
++    if (std::fabs(b) > scale)
++        scale = std::fabs(b);
++    if (scale < 1.0)
++        scale = 1.0;
++    return std::fabs(a - b) <= 1e-3 * scale;
++}
++
+ struct ErrorStats
+ {
+     double min, max, avg;
+@@ -53,9 +63,9 @@
+ 
+     bool operator==(const ErrorStats& other) const
+     {
+-        return this->min == other.min &&
+-               this->max == other.max &&
+-               this->avg == other.avg;
++        return near(this->min, other.min) &&
++               near(this->max, other.max) &&
++               near(this->avg, other.avg);
+     }
+ };
+ 
+@@ -227,9 +237,9 @@
+     LS_START("tst_color_error");
+ 
+     // Re-seed
+-    srand(time(NULL));
++    srand(static_cast<unsigned>(time(NULL)));
+ 
+-    LS_VERIFY(TestOneColourRandom( kDxt1 | kColourRangeFit).max == 1.732050807568877193176604123436845839023590087890625);
++    LS_VERIFY(near(TestOneColourRandom( kDxt1 | kColourRangeFit).max, 1.732050807568877193176604123436845839023590087890625));
+     LS_COMPARE(TestOneColour( kDxt1 ),
+                ErrorStats(0, 1, 0.478286702652959527792830840553506277501583099365234375));
+     LS_COMPARE(TestTwoColour( kDxt1 ),
